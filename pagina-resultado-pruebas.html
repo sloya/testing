@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head
+  <title>Jasmine Spec Runner v2.4.1</title>
+
+  <!--Archivos requeridos por Jasmine -->
+  <link rel="stylesheet"  href="node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
+  <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+  <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+  <script src="node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+</head>
+
+<body>
+<!-- Es necesario usar systemJS para cargar el script donde estan los specs -->
+<!-- #1. Agrega la libreria  system.js -->
+
+ <script>
+   // #2. Se configura SystemJS para usar la extension .js
+   //     para usar imports desde el app folder
+   System.config({
+     packages: {
+       'app': {defaultExtension: 'js'}
+     }
+   });
+   // #3. Se importa el archivo spec explicitamente
+  //  Promise.all([
+  //    System.import('specs/alumno.spec'),
+  //    System.import('specs/alumnoComponent.spec')
+  //  ])
+  // System.import('app/specs/alumnoComponent.spec');
+   System.import('app/specs/alumno.spec')
+     // #4. Espera para todos los imports a que carguen...
+     //     luego re-ejecuta `window.onload`
+     //     y dispara el archivo pagina-resultado-pruebas
+     //     o explica que fue lo que ocurrio si es que algo salio mal
+     .then(window.onload)
+     .catch(console.error.bind(console));
+ </script>
+
+</body>
+</html>
